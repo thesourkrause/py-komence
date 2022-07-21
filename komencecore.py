@@ -15,7 +15,6 @@ from datetime import datetime, timezone
 from regex import E, P, Regex
 
 TIMEOUT = 1 
-PORT = 443  
 IPV4REGEX = r'[0-9]'
 
 def getIsoStamp(timestamp):
@@ -54,11 +53,11 @@ def tcpSockTest(host: str, port: int) -> dict:
     if re.search(IPV4REGEX,host) is None:
         if resolveHost(host) is False:
             return {
-            'HOST' : host,
-            'PORT' : port,
-            'TIME' : "10000",
-            'TIMESTAMP' : getIsoStamp(datetime.timestamp(datetime.now())),
-            'RESULT' : "Failed to Resolve Host"
+                'HOST' : host,
+                'PORT' : port,
+                'TIME' : "10000",
+                'TIMESTAMP' : getIsoStamp(datetime.timestamp(datetime.now())),
+                'RESULT' : "Failed to Resolve Host"
             }
     testStart = time.time()
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -66,12 +65,12 @@ def tcpSockTest(host: str, port: int) -> dict:
     results = sock.connect_ex((host,port))
     rttTime = round((time.time() - testStart) * 1000,2)
     return {
-    'ISP' : getIpInfo('isp'),
-    'HOST' : host,
-    'PORT' : port,
-    'TIME' : rttTime,
-    'TIMESTAMP' : getIsoStamp(datetime.timestamp(datetime.now())),
-    'RESULT' : results
+        'ISP' : getIpInfo('isp'),
+        'HOST' : host,
+        'PORT' : port,
+        'TIME' : rttTime,
+        'TIMESTAMP' : getIsoStamp(datetime.timestamp(datetime.now())),
+        'RESULT' : results
     }
 
 def getDownSpeed(url: str) -> dict:

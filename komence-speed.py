@@ -12,8 +12,6 @@ Author: James Krause <james@thekrauses.me>
 import argparse, argcomplete, komencecore, json
 from re import L
 
-PORT = 443
-
 download_endpoints = {
     '1GB' : 'http://ipv4.download.thinkbroadband.com/1GB.zip',
     '512MB' : 'http://ipv4.download.thinkbroadband.com/512MB.zip',
