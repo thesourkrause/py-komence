@@ -61,11 +61,11 @@ def tcpSockTest(host: str, port: int) -> dict:
     if re.search(IPV4REGEX,host) is None:
         if resolveHost(host) is False:
             return {
-                ('HOST', host),
-                ('PORT', port),
-                ('TIME', "10000"),
-                ('TIMESTAMP', getIsoStamp(datetime.timestamp(datetime.now()))),
-                ('RESULT', "Failed to Resolve Host")
+            'HOST' : host,
+            'PORT' : port,
+            'TIME' : "10000",
+            'TIMESTAMP' : getIsoStamp(datetime.timestamp(datetime.now())),
+            'RESULT' : "Failed to Resolve Host"
             }
     testStart = time.time()
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -73,12 +73,12 @@ def tcpSockTest(host: str, port: int) -> dict:
     results = sock.connect_ex((host,port))
     rttTime = round((time.time() - testStart) * 1000,2)
     return {
-        ('ISP', getIpInfo('isp')),
-        ('HOST', host),
-        ('PORT', port),
-        ('TIME', rttTime),
-        ('TIMESTAMP', getIsoStamp(datetime.timestamp(datetime.now()))),
-        ('RESULT', results)
+    'ISP' : getIpInfo('isp'),
+    'HOST' : host,
+    'PORT' : port,
+    'TIME' : rttTime,
+    'TIMESTAMP' : getIsoStamp(datetime.timestamp(datetime.now())),
+    'RESULT' : results
     }
 
 def getDownSpeed(url: str) -> dict:
@@ -86,10 +86,10 @@ def getDownSpeed(url: str) -> dict:
     download = requests.get(url)
     downloadTime = round((time.time() - testStart),2)
     return {
-        ('SIZE', (len(download.content) / 1.049e+6)),
-        ('URL', url),
-        ('TIME', downloadTime),
-        ('SPEED', round((((len(download.content) / 1.049e+6) / downloadTime) * 10), 2)),
-        ('TIMESTAMP', getIsoStamp(datetime.timestamp(datetime.now()))),
-        ('ISP', getIpInfo('isp'))
+        'SIZE' : (len(download.content) / 1.049e+6),
+        'URL' : url,
+        'TIME' : downloadTime,
+        'SPEED' : round(((len(download.content) / 1.049e+6) / downloadTime) * 10, 2),
+        'TIMESTAMP' : getIsoStamp(datetime.timestamp(datetime.now())),
+        'ISP' : getIpInfo('isp')
     }
