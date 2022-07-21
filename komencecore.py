@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+"""
+Py-Komence is a simple client to test network speeds
+
+There are two scripts:
+komence-latency
+komence-speed
+
+Author: James Krause <james@thekrauses.me>
+
+"""
+
 import socket, time, re, requests
 from datetime import datetime, timezone
 from regex import E, P, Regex
@@ -5,25 +17,6 @@ from regex import E, P, Regex
 TIMEOUT = 1 
 PORT = 443  
 IPV4REGEX = r'[0-9]'
-
-tcp_endpoints = [
-    "www.google.com",
-    "www.github.com",
-    "www.lumen.com",
-    "www.slack.com",
-    "www.microsoft.com"
-]
-
-download_endpoints = {
-    '1GB' : 'http://ipv4.download.thinkbroadband.com/1GB.zip',
-    '512MB' : 'http://ipv4.download.thinkbroadband.com/512MB.zip',
-    '200MB' : 'http://ipv4.download.thinkbroadband.com/200MB.zip',
-    '100MB' : 'http://ipv4.download.thinkbroadband.com/100MB.zip',
-    '50MB' : 'http://ipv4.download.thinkbroadband.com/50MB.zip',
-    '20MB' : 'http://ipv4.download.thinkbroadband.com/20MB.zip',
-    '10MB' : 'http://ipv4.download.thinkbroadband.com/10MB.zip',
-    '5MB' : 'http://ipv4.download.thinkbroadband.com/5MB.zip'
-}
 
 def getIsoStamp(timestamp):
     dt = datetime.fromtimestamp(timestamp)
